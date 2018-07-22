@@ -121,17 +121,6 @@ int oem_get_download_mode(void)
 	return download_mode;
 }
 
-static int panic_prep_restart(struct notifier_block *this,
-			      unsigned long event, void *ptr)
-{
-	in_panic = 1;
-	return NOTIFY_DONE;
-}
-
-static struct notifier_block panic_blk = {
-	.notifier_call	= panic_prep_restart,
-};
-
 int scm_set_dload_mode(int arg1, int arg2)
 {
 	struct scm_desc desc = {
