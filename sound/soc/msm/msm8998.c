@@ -9963,15 +9963,6 @@ static int msm_asoc_machine_remove(struct platform_device *pdev)
 	struct msm_asoc_mach_data *pdata =
 				snd_soc_card_get_drvdata(card);
 
-#ifdef CONFIG_MACH_XIAOMI_MSM8998
-	usbhs_deinit();
-
-	if (pdata->us_p_power)
-		regulator_put(pdata->us_p_power);
-	if (pdata->us_n_power)
-		regulator_put(pdata->us_n_power);
-#endif
-
 	if (pdata->us_euro_gpio > 0) {
 		gpio_free(pdata->us_euro_gpio);
 		pdata->us_euro_gpio = 0;
