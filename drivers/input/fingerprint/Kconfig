@@ -1,17 +1,24 @@
-#
-# Fingerprint driver configuration
-#
 menuconfig INPUT_FINGERPRINT
-	bool "Fingerprints"
+	bool "Fingerprint"
+	default y
 	help
-	  Say Y here, and a list of supported fingerprints will be displayed.
+	  Say Y here, and a list of supported fingerprint will be displayed.
 	  This option doesn't affect the kernel.
 
 	  If unsure, say Y.
 
 if INPUT_FINGERPRINT
 
-source "drivers/input/fingerprint/goodix_ta/Kconfig"
-source "drivers/input/fingerprint/fpc1268_tee/Kconfig"
+config FINGERPRINT_DETECT
+	tristate "fingerprint detect support"
+	depends on SPI_MASTER
+
+config FINGERPRINT_FPC
+   tristate "fpc fingerprint sensor support"
+   depends on SPI_MASTER
+
+config FINGERPRINT_GOODIX
+	tristate "goodix fingerprint sensor support"
+	depends on SPI_MASTER
 
 endif
